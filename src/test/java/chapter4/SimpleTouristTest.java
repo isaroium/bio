@@ -3,8 +3,8 @@ package chapter4;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,7 +17,7 @@ public class SimpleTouristTest {
     public SimpleTourist getInstance(String filename) throws IOException {
         SimpleTourist instance = new SimpleTourist();
         if (filename != null) {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+            BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(filename)));
             String s = br.readLine();
             if ("Input:".equalsIgnoreCase(s))
                 s = br.readLine();
@@ -33,7 +33,9 @@ public class SimpleTouristTest {
                 i++;
 
             }
-            if ("-".equals(s)) ;
+            if ("-".equals(s)) {
+
+            }
             i = 0;
             while ((s = br.readLine()) != null && s.split(" ").length > 1) {
                 int j = 0;
@@ -46,7 +48,7 @@ public class SimpleTouristTest {
                 try {
                     output = Integer.parseInt(s);
                 } catch (Exception e) {
-
+                    //DO Nothing
                 }
             }
             instance.setDown(down);
