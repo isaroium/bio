@@ -66,6 +66,12 @@ public class Graph<T, NT extends Node<T>, V extends Number> {
         nodes.get(to.getId()).getIncoming().add(e);
     }
 
+    public <E extends Edge> void addEdge(E edge) {
+        edges.add(edge);
+        nodes.get(edge.getFrom().getId()).addEdge(edge);
+        nodes.get(edge.getTo().getIncoming().add(edge));
+    }
+
     public void removeEdge(T from, T to) {
         edges.removeIf(s -> s.getFrom().getId().equals(from) && s.getTo().getId().equals(to));
     }

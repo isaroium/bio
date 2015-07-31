@@ -17,4 +17,22 @@ public class TopologicalOrderCapableGraphTest extends TestCase {
         System.out.println(graph.getTopologicalOrder());
         //System.out.println(graph.)
     }
+
+    public void testGetTopologicalOrdere() throws Exception {
+        TopologicalOrderCapableGraph<String, Node<String>, Integer> graph = new TopologicalOrderCapableGraph<>();
+        graph.addEdge(new Node("a"), new Node("b"));
+        graph.addEdge(new Node("a"), new Node("c"));
+        graph.addEdge(new Node("a"), new Node("d"));
+        graph.addEdge(new Node("a"), new Node("e"));
+        graph.addEdge(new Node("a"), new Node("f"));
+        graph.addEdge(new Node("b"), new Node("c"));
+        graph.addEdge(new Node("b"), new Node("f"));
+        graph.addEdge(new Node("c"), new Node("d"));
+        graph.addEdge(new Node("e"), new Node("f"));
+        graph.addEdge(new Node("e"), new Node("d"));
+
+
+        System.out.println(graph.getTopologicalOrder());
+        //System.out.println(graph.)
+    }
 }

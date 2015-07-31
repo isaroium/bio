@@ -1,4 +1,4 @@
-package chapter4.graph.algorithms;
+package chapter4.graph.algorithms.longestpath;
 
 import chapter4.graph.Edge;
 import chapter4.graph.Node;
@@ -24,12 +24,12 @@ public class LongestPath {
      * return ssink</code>
      **/
     LPGraph graph;
-    ScoredNode<Integer> start;
-    ScoredNode<Integer> sink;
+    ScoredNode<String> start;
+    ScoredNode<String> sink;
     List<Edge> stack;
     private boolean run = false;
 
-    public LongestPath(LPGraph graph, ScoredNode<Integer> source, ScoredNode<Integer> sink) {
+    public LongestPath(LPGraph graph, ScoredNode<String> source, ScoredNode<String> sink) {
         this.graph = graph;
         this.start = graph.getNode(source.getId());
         this.sink = graph.getNode(sink.getId());
@@ -44,11 +44,11 @@ public class LongestPath {
 
         graph.getTopologicalOrder().forEach(node -> {
                     int score = node.getIncoming().stream().
-                            mapToInt((cur) -> ((Edge<ScoredNode<Integer>, Integer>) cur).getFrom().getScore() + ((Edge<ScoredNode<Integer>, Integer>) cur)
+                            mapToInt((cur) -> ((Edge<ScoredNode, Integer>) cur).getFrom().getScore() + ((Edge<ScoredNode, Integer>) cur)
                                     .getValue()).max().orElse(Integer.MIN_VALUE);
                     node.setScore(node.equals(start) ? 0 : score);
                     Optional<Edge> optional = node.getIncoming().stream().filter(
-                            edge -> (((ScoredNode<Integer>) edge.getFrom()).getScore() + edge.getValue().intValue()) == node.getScore() && node.getScore() >= 0).findFirst();
+                            edge -> (((ScoredNode) edge.getFrom()).getScore() + edge.getValue().intValue()) == node.getScore() && node.getScore() >= 0).findFirst();
                     if (optional.isPresent())
                         stack.add(optional.get());
                 }

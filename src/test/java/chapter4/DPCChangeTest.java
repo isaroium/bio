@@ -24,4 +24,10 @@ public class DPCChangeTest {
         System.out.println(DPCChange.run(18064, new Integer[]{23, 21, 11, 5, 3, 1}));
 
     }
+
+    @org.junit.Test
+    public void testExtraPr() throws Exception {
+        System.out.println(DPCChange.run(20, new Integer[]{2, 3}));
+    }
+
 }
